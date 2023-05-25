@@ -23,6 +23,17 @@ class _QuizState extends State<Quiz> {
 
   @override
   Widget build(context) {
+    Widget screenWidget = Home(switchScreen);
+
+    switch (activeScreen) {
+      case 1:
+        screenWidget = Home(switchScreen);
+        break;
+      case 2:
+        screenWidget = const QuestionsScreen();
+        break;
+    }
+
     return MaterialApp(
       title: 'Flutter Demo',
       home: Scaffold(
@@ -33,12 +44,11 @@ class _QuizState extends State<Quiz> {
                 Color.fromARGB(255, 78, 13, 151),
                 Color.fromARGB(255, 107, 15, 168),
               ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
             ),
           ),
-          child:
-              activeScreen == 1 ? Home(switchScreen) : const QuestionsScreen(),
+          child: screenWidget,
         ),
       ),
     );
